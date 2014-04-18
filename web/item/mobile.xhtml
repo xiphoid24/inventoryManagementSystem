@@ -1,0 +1,155 @@
+<ui:composition template="../mobile-index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pm="http://primefaces.org/mobile" renderKitId="PRIMEFACES_MOBILE">
+
+	<ui:define name="page">
+		<pm:view id="list">
+			<h:form id="listForm">
+				<pm:header title="Items">
+					<f:facet name="left">
+						<p:button outcome="/mobile-index" icon="home" value="Home" />
+					</f:facet>
+					<f:facet name="right">
+						<p:commandButton value="New" icon="plus"
+							update=":editForm:editFormPanel"
+							action="#{itemBeanMobile.newItem}" />
+					</f:facet>
+				</pm:header>
+
+				<pm:content>
+					<p:dataList id="itemList" value="#{itemBeanMobile.allItems}"
+						var="item" pt:data-inset="true">
+						<f:attribute name="filter" value="true" />
+						<p:commandLink value="#{item.id}, #{item.description}"
+							update=":deleteForm:deleteFormPanel"
+							action="pm:view?transition=slide">
+							<f:setPropertyActionListener value="#{item}"
+								target="#{itemBeanMobile.selectedItem}" />
+						</p:commandLink>
+					</p:dataList>
+				</pm:content>
+			</h:form>
+		</pm:view>
+
+		<pm:view id="edit">
+			<pm:header title="Item">
+				<f:facet name="left">
+					<p:button href="#list?reverse=true" icon="back" value="Back" />
+				</f:facet>
+			</pm:header>
+			<pm:content>
+				<h:form id="editForm">
+					<p:outputPanel id="editFormPanel">
+
+						<p:inputText label="ID" id="id"
+							value="#{itemBeanMobile.selectedItem.id}" disabled="true" />
+
+						<p:inputText label="Code" id="code"
+							value="#{itemBeanMobile.selectedItem.code}" />
+
+						<p:inputText label="Category" id="category"
+							value="#{itemBeanMobile.selectedItem.category}" />
+
+						<p:inputText label="Desctription" id="description"
+							value="#{itemBeanMobile.selectedItem.description}" />
+
+						<p:inputText label="Count" id="count"
+							value="#{itemBeanMobile.selectedItem.count}" />
+
+						<p:inputText label="Location" id="location"
+							value="#{itemBeanMobile.selectedItem.location}" />
+
+						<p:inputText label="Cost" id="cost"
+							value="#{itemBeanMobile.selectedItem.cost}" />
+
+						<p:inputText label="Price" id="price"
+							value="#{itemBeanMobile.selectedItem.price}" />
+
+					</p:outputPanel>
+
+					<p:commandButton value="Save" action="#{itemBeanMobile.save}"
+						update=":listForm:itemList" icon="check" />
+				</h:form>
+
+			</pm:content>
+		</pm:view>
+
+		<pm:view id="view">
+			<pm:header title="Item">
+				<f:facet name="left">
+					<p:button href="#list?reverse=true" icon="back" value="Back" />
+				</f:facet>
+			</pm:header>
+			<pm:content>
+				<h:form id="deleteForm">
+					<p:outputPanel id="deleteFormPanel">
+
+						<pm:field>
+							<p:outputLabel for="id" value="ID: " />
+							<h:outputText id="id" value="#{itemBeanMobile.selectedItem.id}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="code" value="Code: " />
+							<h:outputText id="code"
+								value="#{itemBeanMobile.selectedItem.code}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="category" value="Category: " />
+							<h:outputText id="category"
+								value="#{itemBeanMobile.selectedItem.category}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="description" value="Description: " />
+							<h:outputText label="Desctription" id="description"
+								value="#{itemBeanMobile.selectedItem.description}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="count" value="Count: " />
+							<h:outputText id="count"
+								value="#{itemBeanMobile.selectedItem.count}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="location" value="Location: " />
+							<h:outputText id="location"
+								value="#{itemBeanMobile.selectedItem.location}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="cost" value="Cost: " />
+							<h:outputText id="cost"
+								value="#{itemBeanMobile.selectedItem.cost}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="price" value="Price: " />
+							<h:outputText id="price"
+								value="#{itemBeanMobile.selectedItem.price}" />
+						</pm:field>
+
+					</p:outputPanel>
+
+					<p:commandButton value="Edit" update=":editForm:editFormPanel"
+						action="pm:edit?transition=slide" icon="edit">
+						<f:setPropertyActionListener
+							value="#{itemBeanMobile.selectedItem}"
+							target="#{itemBeanMobile.selectedItem}" />
+					</p:commandButton>
+
+					<p:commandButton value="Delete" action="#{itemBeanMobile.delete}"
+						update=":listForm:itemList" icon="delete" />
+				</h:form>
+
+			</pm:content>
+		</pm:view>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,27 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	renderKitId="PRIMEFACES_MOBILE">
+
+	<pm:page title="mobile">
+		<ui:insert name="page">
+		
+			<pm:view id="base">
+				<pm:header title="Home">
+					<f:facet name="right">
+						<p:button outcome="/index" icon="home" value="Desktop" />
+					</f:facet>
+				</pm:header>
+				
+				<pm:content>
+					<p:button outcome="item/mobile" value="Items" icon="star" pt:data-inset="true"/>
+				</pm:content>
+			</pm:view>
+					
+		</ui:insert>
+	</pm:page>
+</f:view>

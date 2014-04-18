@@ -1,0 +1,82 @@
+<ui:composition template="../index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">
+    	Add New
+    </ui:define>
+
+	<ui:define name="header">
+    	Add New
+    </ui:define>
+
+	<ui:define name="toolbar">
+		<p:toolbarGroup align="left">
+			<p:button outcome="/index" icon="ui-icon-home" value="Home" />
+			<p:separator />
+			<p:button outcome="list" icon="ui-icon-arrow-1-w" value="Item List" />
+		</p:toolbarGroup>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel id="panel" header="Add New">
+				<p:messages id="message" globalOnly="true" autoUpdate="true"
+					closable="true" />
+				<h:panelGrid columns="3" cellpadding="3">
+
+					<h:outputLabel for="id" value="ID:" />
+					<h:outputText id="id" value="*Auto-Generated" />
+					<p:message for="id" display="text" />
+
+					<h:outputLabel for="code" value="Code:" />
+					<p:inputText id="code" value="#{itemBean.code}" placeholder="Code"
+						required="true" requiredMessage="*Code is required" />
+					<p:message for="code" display="text" />
+
+					<h:outputLabel for="category" value="Category:" />
+					<p:inputText id="category" value="#{itemBean.category}"
+						placeholder="Category" required="true"
+						requiredMessage="*Category is required" />
+					<p:message for="category" display="text" />
+
+					<h:outputLabel for="description" value="Description:" />
+					<p:inputText id="description" value="#{itemBean.description}"
+						placeholder="Description" required="true"
+						requiredMessage="*Description is required" />
+					<p:message for="description" display="text" />
+
+					<h:outputLabel for="count" value="Count:" />
+					<p:inputText id="count" value="#{itemBean.count}"
+						placeholder="Count" required="true"
+						requiredMessage="*Count is required" />
+					<p:message for="count" display="text" />
+
+					<h:outputLabel for="location" value="Location:" />
+					<p:inputText id="location" value="#{itemBean.location}"
+						placeholder="Location" required="true"
+						requiredMessage="*Location is required" />
+					<p:message for="location" display="text" />
+
+					<h:outputLabel for="cost" value="Cost:" />
+					<p:inputText id="cost" value="#{itemBean.cost}" placeholder="Cost"
+						required="true" requiredMessage="*Cost is required" />
+					<p:message for="cost" display="text" />
+
+					<h:outputLabel for="price" value="Price:" />
+					<p:inputText id="price" value="#{itemBean.price}"
+						placeholder="Price" required="true"
+						requiredMessage="*Price is required" />
+					<p:message for="price" display="text" />
+
+				</h:panelGrid>
+				<p:commandButton icon="ui-icon-disk" value="Add" update="panel"
+					actionListener="#{itemBean.add}" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

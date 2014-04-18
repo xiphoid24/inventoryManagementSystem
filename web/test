@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"	
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+
+<h:head></h:head>
+
+<h:body>
+	<pm:page title="mobile">
+		<pm:view id="list">
+			<pm:header title="Items" theme="b">
+				<p:commandButton styleClass="ui-btn-right ui-btn-inline" value="New"
+					icon="ui-icon-plus" update=":editForm:editFormPanel"
+					action="#{itemBeanMobile.newItem}" />
+			</pm:header>
+
+			<pm:content>
+				<h:form id="listForm">
+					<p:dataList id="itemList" value="#{itemBeanMobile.allItems}" var="item">
+						<p:commandLink value="#{item.id}" update=":editForm:editFormPanel" action="pm:edit?transition=slide">
+							<f:setPropertyActionListener value="#{item}"
+								target="#{itemBeanMobile.selectedItem}" />
+						</p:commandLink>
+					</p:dataList>
+				</h:form>
+			</pm:content>
+		</pm:view>
+
+		<pm:view id="edit">
+			<pm:header title="Item" theme="b">
+				<p:button styleClass="ui-btn-left ui-btn-inline" value="Back"
+					icon="ui-icon-arrow-l" outcome="pm:list?reverse=true" />
+			</pm:header>
+
+			<pm:content>
+				<h:form id="editForm">
+					<p:outputPanel id="editFormPanel">
+						<pm:field>
+							<p:outputLabel for="id" value="ID" />
+							<h:outputText id="id" value="Auto-Generated" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="code" value="Code" />
+							<p:inputText id="code"
+								value="#{itemBeanMobile.selectedItem.code}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="category" value="Category" />
+							<p:inputText id="category"
+								value="#{itemBeanMobile.selectedItem.category}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="description" value="Description" />
+							<p:inputText id="description"
+								value="#{itemBeanMobile.selectedItem.description}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="count" value="Count" />
+							<p:inputText id="count"
+								value="#{itemBeanMobile.selectedItem.count}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="location" value="Location" />
+							<p:inputText id="location"
+								value="#{itemBeanMobile.selectedItem.location}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="cost" value="Cost" />
+							<p:inputText id="cost"
+								value="#{itemBeanMobile.selectedItem.cost}" />
+						</pm:field>
+
+						<pm:field>
+							<p:outputLabel for="price" value="Price" />
+							<p:inputText id="price"
+								value="#{itemBeanMobile.selectedItem.price}" />
+						</pm:field>
+
+					</p:outputPanel>
+
+					<p:commandButton value="Save" action="#{itemBeanMobile.save}"
+						update=":listForm:itemList" icon="ui-icon-check" />
+				</h:form>
+
+			</pm:content>
+		</pm:view>
+	</pm:page>
+
+</h:body>
+
+</html>

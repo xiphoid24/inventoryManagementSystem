@@ -1,0 +1,70 @@
+<ui:composition template="../index.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">
+    	Details
+    </ui:define>
+
+	<ui:define name="header">
+    	Details
+    </ui:define>
+
+	<ui:define name="toolbar">
+		<p:toolbarGroup align="left">
+			<p:button outcome="/index" icon="ui-icon-home" value="Home" />
+			<p:separator />
+			<p:button outcome="list" icon="ui-icon-arrow-1-w" value="Item List" />
+		</p:toolbarGroup>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form id="form">
+			<p:panel id="panel" header="Details">
+				<p:messages id="message" globalOnly="true" autoUpdate="true"
+					closable="true" />
+				<h:panelGrid columns="2" cellpadding="3">
+
+					<h:outputLabel for="id" value="Id:" />
+					<h:outputText id="id" value="#{itemBean.selectedItem.id}" />
+
+					<h:outputLabel for="code" value="Code:" />
+					<h:outputText id="code" value="#{itemBean.selectedItem.code}"
+						placeholder="Code" />
+
+					<h:outputLabel for="category" value="Category:" />
+					<h:outputText id="category"
+						value="#{itemBean.selectedItem.category}" placeholder="Category" />
+
+					<h:outputLabel for="description" value="Description:" />
+					<h:outputText id="description"
+						value="#{itemBean.selectedItem.description}"
+						placeholder="Description" />
+
+					<h:outputLabel for="count" value="Count:" />
+					<h:outputText id="count" value="#{itemBean.selectedItem.count}"
+						placeholder="Count" />
+
+					<h:outputLabel for="location" value="Location:" />
+					<h:outputText id="location"
+						value="#{itemBean.selectedItem.location}" placeholder="Location" />
+
+					<h:outputLabel for="cost" value="Cost:" />
+					<h:outputText id="cost" value="#{itemBean.selectedItem.cost}"
+						placeholder="Cost" />
+
+					<h:outputLabel for="price" value="Price:" />
+					<h:outputText id="price" value="#{itemBean.selectedItem.price}"
+						placeholder="Price" />
+
+					<p:button icon="ui-icon-pencil" value="Edit" outcome="edit" />
+					<p:commandButton icon="ui-icon-trash" value="Delete" action="#{itemBean.delete}" />
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
